@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
          return unUnsubscribed();
       };
    }, []);
-
+   console.log("user is", user);
    const authInfo = {
       user,
       loading,

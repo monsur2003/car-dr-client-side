@@ -1,6 +1,7 @@
-import { FaArrowRight, FaBeer } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const ServicesCard = ({ service }) => {
-   const { title, img, price } = service;
+   const { _id, title, img, price } = service;
    return (
       <div>
          <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -18,9 +19,12 @@ const ServicesCard = ({ service }) => {
                      Price: ${price}
                   </p>
                   <div className="card-actions justify-end">
-                     <span className="text-xl cursor-pointer">
-                        <FaArrowRight className="text-orange-600"></FaArrowRight>
-                     </span>
+                     <Link to={`/checkout/${_id}`}>
+                        {" "}
+                        <span className="text-xl cursor-pointer">
+                           <FaArrowRight className="text-orange-600"></FaArrowRight>
+                        </span>
+                     </Link>
                   </div>
                </div>
             </div>

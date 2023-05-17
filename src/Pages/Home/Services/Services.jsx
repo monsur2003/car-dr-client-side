@@ -27,7 +27,7 @@ const Services = () => {
                slightly believable.{" "}
             </p>
          </div>
-         <div className="grid md:grid-cols-3 gap-4 mx-auto">
+         <div className="grid md:grid-cols-3 gap-7 mx-auto mb-5">
             {services.map((service) => (
                <ServicesCard key={service._id} service={service}></ServicesCard>
             ))}

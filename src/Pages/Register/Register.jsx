@@ -3,6 +3,7 @@ import loginImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
    const { createUser } = useContext(AuthContext);
@@ -17,12 +18,19 @@ const Register = () => {
       createUser(email, password)
          .then((result) => {
             const createdUser = result.user;
-            console.log(createdUser);
+            updateName(createdUser, name);
          })
          .catch((err) => {
             console.log(err.message);
          });
    };
+
+   const updateName = (currentUser, name) => {
+      updateProfile(currentUser, {
+         displayName: name,
+      });
+   };
+
    return (
       <div className="hero min-h-screen my-7 bg-base-100">
          <div className="hero-content flex-col lg:flex-row">
