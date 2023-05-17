@@ -1,15 +1,26 @@
-import React from "react";
+import { useContext } from "react";
 import loginImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
+   const { loginUser } = useContext(AuthContext);
+
    const handleLogin = (event) => {
       event.preventDefault();
       const form = event.target;
       const email = form.email.value;
       const password = form.password.value;
       console.log(email, password);
+      loginUser(email, password)
+         .then((result) => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
    };
 
    return (
@@ -53,9 +64,6 @@ const Login = () => {
                               className="label-text-alt link link-hover">
                               Forgot password?
                            </a>
-                           <Link to="/register" className="link link-hover">
-                              please register
-                           </Link>
                         </label>
                      </div>
                      <div className="form-control mt-6">
@@ -74,6 +82,14 @@ const Login = () => {
                      <FaFacebook className="text-2xl font-bold text-blue-500 "></FaFacebook>
                      <FaLinkedin className="text-2xl font-bold text-blue-500 "></FaLinkedin>
                   </div>
+               </div>
+               <div className="text-center mt-5">
+                  <Link to="/register" className="text-center">
+                     New to car doctor{" "}
+                     <span className="text-orange-500 link link-hover font-semibold">
+                        SignUp
+                     </span>
+                  </Link>
                </div>
             </div>
          </div>
