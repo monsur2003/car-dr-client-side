@@ -21,7 +21,7 @@ const Services = () => {
                {" "}
                Our services area
             </h1>
-            <p className="font-semibold text-gray-600 mt-1">
+            <p className="font-semibold text-gray-600 mb-5 mt-1">
                the majority have suffered alteration in some form, by injected
                humour, <br /> or randomised words which do not look even
                slightly believable.{" "}
