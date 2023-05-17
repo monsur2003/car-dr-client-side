@@ -1,3 +1,4 @@
+import { FaArrowRight, FaBeer } from "react-icons/fa";
 const ServicesCard = ({ service }) => {
    const { title, img, price } = service;
    return (
@@ -17,7 +18,9 @@ const ServicesCard = ({ service }) => {
                      Price: ${price}
                   </p>
                   <div className="card-actions justify-end">
-                     <button className="btn btn-primary">Buy Now</button>
+                     <span className="text-xl cursor-pointer">
+                        <FaArrowRight className="text-orange-600"></FaArrowRight>
+                     </span>
                   </div>
                </div>
             </div>
