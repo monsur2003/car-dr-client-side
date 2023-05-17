@@ -81,7 +81,7 @@ const Register = () => {
                         <button
                            type="submit"
                            className="btn hover:bg-orange-800 bg-orange-600">
-                           Login
+                           Sign up
                         </button>
                      </div>
                   </div>
