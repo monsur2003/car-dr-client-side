@@ -3,6 +3,7 @@ import loginImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
    const { loginUser } = useContext(AuthContext);
@@ -16,7 +17,14 @@ const Login = () => {
       loginUser(email, password)
          .then((result) => {
             const loggedUser = result.user;
-            console.log(loggedUser);
+            if (loggedUser) {
+               Swal.fire({
+                  title: "Log in Success",
+                  text: "Do you want to continue",
+                  icon: "success",
+                  confirmButtonText: "Okey",
+               });
+            }
          })
          .catch((err) => {
             console.log(err.message);
