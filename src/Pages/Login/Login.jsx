@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import loginImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
    const { loginUser } = useContext(AuthContext);
+   const location = useLocation();
+   const navigate = useNavigate();
+   const from = location.state?.from?.pathname || "/";
 
    const handleLogin = (event) => {
       event.preventDefault();
@@ -17,6 +20,22 @@ const Login = () => {
       loginUser(email, password)
          .then((result) => {
             const loggedUser = result.user;
+            const user = {
+               email: loggedUser.email,
+            };
+            fetch("http://localhost:5000/jwt", {
+               method: "POST",
+               headers: {
+                  "content-type": "application/json",
+               },
+               body: JSON.stringify(user),
+            })
+               .then((res) => res.json())
+               .then((data) => {
+                  console.log(data);
+                  localStorage.setItem("car-access-token", data.token);
+                  navigate(from, { replace: true });
+               });
             if (loggedUser) {
                Swal.fire({
                   title: "Log in Success",

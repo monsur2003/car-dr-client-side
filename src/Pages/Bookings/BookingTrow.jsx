@@ -1,9 +1,18 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-const BookingTrow = ({ booking, handleDelete }) => {
-   const { customerNmae, date, amount, email, price, _id, service, img } =
-      booking;
+const BookingTrow = ({ booking, handleDelete, updateConfirmation }) => {
+   const {
+      customerNmae,
+      date,
+      amount,
+      email,
+      price,
+      _id,
+      service,
+      img,
+      statusbar,
+   } = booking;
 
    return (
       <tr>
@@ -39,7 +48,17 @@ const BookingTrow = ({ booking, handleDelete }) => {
          <td>${price}</td>
          <td>{date}</td>
          <th>
-            <button className="btn btn-ghost btn-xs">details</button>
+            {statusbar === "success" ? (
+               <span className="text-blue-500 font-semibold">Confirmed</span>
+            ) : (
+               <button
+                  onClick={() => {
+                     updateConfirmation(_id);
+                  }}
+                  className="btn btn-ghost btn-xs">
+                  Confirming
+               </button>
+            )}
          </th>
       </tr>
    );
